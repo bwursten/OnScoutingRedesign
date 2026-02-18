@@ -50,6 +50,11 @@
             font-weight: 700;
         }
 
+        .visually-hidden {
+            position: absolute; width: 1px; height: 1px; margin: -1px;
+            padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+        }
+
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
@@ -315,8 +320,20 @@
         .mixed-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; align-items: stretch; }
         .main-column { display: flex; flex-direction: column; gap: 30px; }
 
+        /* --- NEW TETRIS ROW FOR VIDEO & POLL --- */
+        .top-content-row { 
+            display: flex; 
+            gap: 30px; 
+            align-items: stretch; 
+        }
+        
+        .top-content-row .video-wrapper { 
+            flex: 1.5; /* Adjusted down from 1.8 to balance the right-side layout better */
+            width: auto;
+        }
+
         .video-wrapper {
-            width: 100%; aspect-ratio: 16 / 9; background-color: #000;
+            aspect-ratio: 16 / 9; background-color: #000;
             border-radius: 4px; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             position: relative; display: flex; align-items: center; justify-content: center;
         }
@@ -326,6 +343,21 @@
             background: var(--scout-red); color: white; padding: 5px 12px;
             font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; z-index: 5;
         }
+
+        /* POLL WIDGET STYLES */
+        .poll-box {
+            flex: 1;
+            background: white; 
+            padding: clamp(15px, 3vw, 25px);
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--scout-green);
+            display: flex; 
+            flex-direction: column;
+        }
+
+        .poll-box h3 { margin-top: 0; font-size: 1.2rem; margin-bottom: 5px; }
+        .poll-box p.poll-question { font-weight: bold; font-size: 0.95rem; margin-bottom: 15px; }
 
         .lower-content-row { display: flex; gap: 30px; height: 250px; }
         .newsletter-box {
@@ -349,15 +381,17 @@
             background: white; padding: clamp(15px, 3vw, 25px);
             border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             border-top: 5px solid var(--scout-green); display: flex; flex-direction: column;
-            overflow: hidden; /* Important so gradient doesn't spill out */
+            overflow: hidden; 
         }
 
         .roundup-box h3 { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
         
         .roundup-scroll-area {
             flex: 1; overflow-y: auto; padding-right: 15px; min-height: 0;
-            /* Extra bottom padding so last item clears the gradient if needed */
             padding-bottom: 40px; 
+            /* Firefox Scrollbar Support */
+            scrollbar-width: thin;
+            scrollbar-color: #ccc #f1f1f1;
         }
         .roundup-scroll-area::-webkit-scrollbar { width: 6px; }
         .roundup-scroll-area::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -369,7 +403,7 @@
             bottom: 0; left: 0; right: 0;
             height: 90px;
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 85%);
-            pointer-events: none; /* Crucial: Lets users click links behind the fade */
+            pointer-events: none; 
             z-index: 5;
             transition: opacity 0.3s ease;
         }
@@ -448,21 +482,19 @@
             .header-content.active { display: flex; animation: fadeIn 0.3s; }
             nav ul { flex-direction: column; gap: 0; }
             
-            /* Menu Links (Centered & Border Adjusted) */
             nav a::after { display: none; }
             nav a { 
                 display: block; padding: 15px 0; 
                 border-bottom: 1px solid rgba(255,255,255,0.1); 
                 font-size: 1.1rem; white-space: normal;
-                text-align: center; /* FIX #4: Centered Text */
+                text-align: center; 
             }
             nav ul li:last-child a {
-                border-bottom: none; /* FIX #3: Removed bottom border from last link */
+                border-bottom: none; 
             }
 
             .header-actions { margin-left: 0; margin-top: 10px; flex-direction: column; align-items: stretch; gap: 15px; }
             
-            /* Seamless Native iOS-Style Search (Fix #5) */
             .search-container { 
                 background-color: white; border: none;
                 width: 100%; padding: 0 15px; border-radius: 20px;
@@ -477,7 +509,6 @@
             .search-container.active input { width: 100%; }
             .search-container input::placeholder { color: #888; }
 
-            /* Centered Subscribe Button */
             .header-actions .btn { width: 100%; padding: 15px; text-align: center; }
         }
 
@@ -500,6 +531,11 @@
             .carousel-card { width: 80vw; min-width: 80vw; } 
 
             .mixed-grid { grid-template-columns: 1fr; gap: 40px; }
+            
+            /* Mobile adjustment for the new top row */
+            .top-content-row { flex-direction: column; height: auto; gap: 30px; }
+            .top-content-row .video-wrapper { flex: none; width: 100%; }
+
             .lower-content-row { flex-direction: column; height: auto; gap: 30px;}
             .ad-placeholder-300 { margin: 0 auto; }
             .sidebar-column { position: static; height: 500px; }
@@ -523,7 +559,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo">On Scouting</div>
-            <button class="mobile-menu-toggle" id="menuToggleBtn" onclick="toggleMobileMenu()">&#9776;</button>
+            <button class="mobile-menu-toggle" id="menuToggleBtn" aria-label="Toggle Navigation">&#9776;</button>
             
             <div class="header-content" id="mobileNav">
                 <nav>
@@ -539,7 +575,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-container" id="searchContainer">
-                        <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
+                        <button class="search-btn" id="searchBtn" aria-label="Search">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -598,7 +634,7 @@
             </div>
             
             <div class="carousel-wrapper">
-                <button class="carousel-btn left" onclick="scrollCarousel(-300)">&#8249;</button>
+                <button class="carousel-btn left" id="carouselLeftBtn" aria-label="Scroll Left">&#8249;</button>
                 <div class="carousel-container" id="storiesCarousel">
                     <div class="carousel-card">
                         <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2023/09/CPR-training-scaled.jpg" alt="CPR">
@@ -644,7 +680,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-btn right" onclick="scrollCarousel(300)">&#8250;</button>
+                <button class="carousel-btn right" id="carouselRightBtn" aria-label="Scroll Right">&#8250;</button>
             </div>
         </div>
     </section>
@@ -654,11 +690,26 @@
             <div class="mixed-grid">
                 
                 <div class="main-column">
-                    <div class="video-wrapper">
-                        <div class="video-label">Watch Now</div>
-                        <div style="text-align:center;">
-                            <h2 style="color:white; margin-bottom:10px;">Scout Life: High Adventure</h2>
-                            <button class="btn" style="border-radius: 4px; border: none; background-color: var(--scout-red); color: white;">Play Video &#9658;</button>
+                    
+                    <div class="top-content-row">
+                        <div class="poll-box">
+                            <h3>Darrin's Hot Take</h3>
+                            <p style="font-size: 1.05rem; font-style: italic; color: var(--scout-green); margin-bottom: 10px;">"Trout is better than salmon."</p>
+                            <p class="poll-question" style="margin-bottom: 15px;">Is he wrong?</p>
+                            
+                            <form style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+                                <label for="pollResponse" class="visually-hidden">Your opinion...</label>
+                                <textarea id="pollResponse" placeholder="Share your thoughts..." rows="3" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Roboto', sans-serif; resize: none;"></textarea>
+                                <button type="button" class="btn" style="width:100%; border-radius: 4px; border: none; background-color: var(--scout-green); color: white; margin-top: auto;">Submit</button>
+                            </form>
+                        </div>
+
+                        <div class="video-wrapper">
+                            <div class="video-label">Watch Now</div>
+                            <div style="text-align:center;">
+                                <h2 style="color:white; margin-bottom:10px;">Scout Life: High Adventure</h2>
+                                <button class="btn" style="border-radius: 4px; border: none; background-color: var(--scout-red); color: white;">Play Video &#9658;</button>
+                            </div>
                         </div>
                     </div>
 
@@ -667,8 +718,10 @@
                             <h3>Get the Newsletter!</h3>
                             <p style="font-size: 0.9rem; margin-bottom: 10px;">Get the latest news and tips delivered free to your inbox.</p>
                             <form>
-                                <input type="text" placeholder="Name">
-                                <input type="email" placeholder="Email Address">
+                                <label for="newsletterName" class="visually-hidden">Name</label>
+                                <input type="text" id="newsletterName" placeholder="Name">
+                                <label for="newsletterEmail" class="visually-hidden">Email Address</label>
+                                <input type="email" id="newsletterEmail" placeholder="Email Address">
                                 <button type="button" class="btn" style="width:100%; border-radius: 4px; border: none; background-color: var(--scout-red); color: white;">Sign Up Now</button>
                             </form>
                         </div>
@@ -690,7 +743,7 @@
                             <div class="roundup-item">
                                 <span class="roundup-source">The Guardian</span>
                                 <h4><a href="https://www.theguardian.com/travel/ng-interactive/2025/sep/30/wilderness-survival-search-rescue">They were lost in the wild. This is how they survived</a></h4>
-                                <p>These lost hikers are living today because they did what a Scout is trained for in the <a href="https://www.scouting.org/merit-badges/wilderness-survival/" target="_new" style="text-decoration:underline;">Wilderness Survival merit badge</a>.</p>
+                                <p>These lost hikers are living today because they did what a Scout is trained for in the <a href="https://www.scouting.org/merit-badges/wilderness-survival/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Wilderness Survival merit badge</a>.</p>
                             </div>
                             
                             <div class="roundup-item">
@@ -736,13 +789,13 @@
             <h2 style="margin-bottom: 20px;">Explore by Topic</h2>
             
             <div class="tabs-header">
-                <button class="tab-btn active" onclick="openTab(event, 'health')">Health & Wellness</button>
-                <button class="tab-btn" onclick="openTab(event, 'goodturns')">Good Turns</button>
-                <button class="tab-btn" onclick="openTab(event, 'headliners')">Headliners</button>
-                <button class="tab-btn" onclick="openTab(event, 'outdoors')">Outdoors</button>
-                <button class="tab-btn" onclick="openTab(event, 'family')">Family Fun</button>
-                <button class="tab-btn" onclick="openTab(event, 'leader')">Leader Lab</button>
-                <button class="tab-btn" onclick="openTab(event, 'updates')">Scouting Updates</button>
+                <button class="tab-btn active" data-target="health">Health & Wellness</button>
+                <button class="tab-btn" data-target="goodturns">Good Turns</button>
+                <button class="tab-btn" data-target="headliners">Headliners</button>
+                <button class="tab-btn" data-target="outdoors">Outdoors</button>
+                <button class="tab-btn" data-target="family">Family Fun</button>
+                <button class="tab-btn" data-target="leader">Leader Lab</button>
+                <button class="tab-btn" data-target="updates">Scouting Updates</button>
             </div>
 
             <div id="health" class="tab-content active">
@@ -893,66 +946,82 @@
     </footer>
 
     <script>
-        // Search Box Logic
-        function toggleSearch() {
-            const container = document.getElementById('searchContainer');
-            container.classList.toggle('active');
-            if (container.classList.contains('active')) {
-                document.getElementById('searchInput').focus();
-            }
-        }
-
-        // Mobile Hamburger Menu (Fix 1: Toggle X and Hamburger icon)
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.getElementById('menuToggleBtn');
-            nav.classList.toggle('active');
+        document.addEventListener('DOMContentLoaded', () => {
             
-            if (nav.classList.contains('active')) {
-                btn.innerHTML = '&#10005;'; // The "X" symbol
-            } else {
-                btn.innerHTML = '&#9776;'; // The "Hamburger" symbol
-            }
-        }
+            // Search Box Logic
+            const searchBtn = document.getElementById('searchBtn');
+            const searchContainer = document.getElementById('searchContainer');
+            const searchInput = document.getElementById('searchInput');
 
-        // Tab Switching
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "grid";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.className += " active";
-        }
-
-        // Horizontal Carousel
-        function scrollCarousel(offset) {
-            const carousel = document.getElementById('storiesCarousel');
-            carousel.scrollBy({ left: offset, behavior: 'smooth' });
-        }
-
-        // Scroll Affordance Logic for News Roundup
-        const roundupArea = document.getElementById('roundupScrollArea');
-        const scrollFade = document.getElementById('scrollFade');
-
-        if (roundupArea && scrollFade) {
-            roundupArea.addEventListener('scroll', function() {
-                // Hide the white gradient fade when they hit the very bottom
-                // We use - 5 as a small buffer for cross-browser rounding decimal issues
-                if (this.scrollTop + this.clientHeight >= this.scrollHeight - 5) {
-                    scrollFade.style.opacity = '0';
-                } else {
-                    scrollFade.style.opacity = '1';
+            searchBtn.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
                 }
             });
-        }
+
+            // Mobile Hamburger Menu
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const mobileNav = document.getElementById('mobileNav');
+
+            menuToggleBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('active');
+                if (mobileNav.classList.contains('active')) {
+                    menuToggleBtn.innerHTML = '&#10005;'; 
+                } else {
+                    menuToggleBtn.innerHTML = '&#9776;'; 
+                }
+            });
+
+            // Tab Switching Logic
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const targetId = e.currentTarget.getAttribute('data-target');
+                    
+                    // Hide all contents
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    });
+                    
+                    // Remove active class from all buttons
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Show target content and activate clicked button
+                    const targetContent = document.getElementById(targetId);
+                    targetContent.style.display = 'grid';
+                    targetContent.classList.add('active');
+                    e.currentTarget.classList.add('active');
+                });
+            });
+
+            // Horizontal Carousel Logic
+            const storiesCarousel = document.getElementById('storiesCarousel');
+            document.getElementById('carouselLeftBtn').addEventListener('click', () => {
+                storiesCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            document.getElementById('carouselRightBtn').addEventListener('click', () => {
+                storiesCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            // Scroll Affordance Logic for News Roundup
+            const roundupArea = document.getElementById('roundupScrollArea');
+            const scrollFade = document.getElementById('scrollFade');
+
+            if (roundupArea && scrollFade) {
+                roundupArea.addEventListener('scroll', function() {
+                    if (this.scrollTop + this.clientHeight >= this.scrollHeight - 5) {
+                        scrollFade.style.opacity = '0';
+                    } else {
+                        scrollFade.style.opacity = '1';
+                    }
+                });
+            }
+
+        });
     </script>
 </body>
 </html>
