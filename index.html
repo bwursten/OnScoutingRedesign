@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On Scouting | Scouting America Magazine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette: Classic & Rugged */
+            --scout-green: #3B4D36;
+            --scout-tan: #F4F1EA;
+            --scout-khaki: #D8CDB6;
+            --scout-red: #CE1126;
+            --scout-brown: #5C4033;
+            --text-dark: #222222;
+            
+            /* Spacing */
+            --container-width: 1240px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--scout-tan);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 900;
+            color: var(--scout-green);
+            margin-bottom: 0.5em;
+            line-height: 1.3;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Utility classes */
+        .ui-font {
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--scout-red);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn:hover { background-color: #a30e1e; }
+
+        .category-tag {
+            background-color: var(--scout-khaki);
+            color: var(--scout-brown);
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        img { max-width: 100%; height: auto; display: block; background-color: #ddd; }
+
+        /* --- ADS --- */
+        .ad-container-728 {
+            display: flex; justify-content: center;
+            padding: clamp(15px, 3vw, 30px) 0;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 0;
+        }
+        .ad-placeholder-728 {
+            width: 728px; height: 90px;
+            background-color: #eee; border: 1px dashed #999;
+            display: flex; align-items: center; justify-content: center;
+            color: #777; font-family: 'Roboto', sans-serif; font-size: 0.8rem;
+        }
+        .ad-placeholder-300 {
+            width: 300px; height: 250px;
+            background-color: #eee; border: 1px dashed #999;
+            display: flex; align-items: center; justify-content: center;
+            color: #777; font-family: 'Roboto', sans-serif; font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--scout-green);
+            color: white;
+            padding: 15px 0;
+            border-bottom: 5px solid var(--scout-brown);
+        }
+
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem; font-weight: 900; font-style: italic;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 5px 15px; margin-right: 20px;
+        }
+
+        .mobile-menu-toggle {
+            display: none; background: none; border: none; color: white;
+            font-size: 2rem; cursor: pointer; padding: 5px;
+        }
+
+        .header-content {
+            display: flex; flex: 1; align-items: center; justify-content: space-between;
+        }
+
+        nav ul { display: flex; gap: 20px; flex-wrap: wrap;}
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.8); 
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: 0; left: 50%; background-color: white;
+            transition: all 0.3s ease; transform: translateX(-50%);
+        }
+        nav a:hover { color: white; }
+        nav a:hover::after { width: 100%; }
+
+        .header-actions { display: flex; gap: 15px; align-items: center; margin-left: 20px;}
+        
+        .search-container {
+            display: flex; align-items: center;
+            background-color: transparent;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .search-container.active {
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .search-btn {
+            background: none; border: none; color: white;
+            cursor: pointer; padding: 8px;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .search-btn:hover { transform: scale(1.1); }
+        .search-container input { 
+            width: 0; padding: 0; border: none;
+            background: transparent; color: white;
+            font-family: 'Roboto', sans-serif; font-size: 0.85rem;
+            outline: none; opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .search-container.active input {
+            width: 160px; padding: 8px 10px 8px 0; opacity: 1;
+        }
+        .search-container input::placeholder { color: rgba(255,255,255,0.6); }
+
+        .header-actions .btn {
+            background-color: transparent; color: white;
+            border: 1px solid white; border-radius: 20px;
+            padding: 9px 20px; font-size: 0.85rem; text-transform: uppercase;
+        }
+        .header-actions .btn:hover {
+            background-color: white; color: var(--scout-green);
+            transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            padding: clamp(20px, 4vw, 40px) 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .hero-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 30px; height: 500px;
+        }
+
+        .hero-main {
+            position: relative; height: 100%; border-radius: 4px; overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .hero-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .hero-main img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .hero-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: clamp(15px, 4vw, 30px); color: white;
+        }
+        .hero-main h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem); 
+            color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 10px;
+        }
+
+        .hero-side-stack { display: flex; flex-direction: column; gap: 30px; height: 100%; }
+        
+        .hero-sub {
+            flex: 1; position: relative;
+            border-radius: 4px; overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .hero-sub:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .hero-sub img { 
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover;
+            z-index: 1;
+        }
+        .hero-sub-content { 
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 20px; z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+            height: 100%;
+        }
+        .hero-sub h3 { 
+            font-size: clamp(1.1rem, 2vw, 1.3rem); color: white; margin-top: 8px; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); line-height: 1.3;
+        }
+
+        /* --- CAROUSEL SECTION --- */
+        .carousel-section {
+            padding: clamp(30px, 5vw, 40px) 0;
+            background-color: #fff; border-bottom: 1px solid #e0e0e0;
+        }
+        .carousel-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: baseline; }
+        .carousel-wrapper { position: relative; }
+
+        .carousel-btn {
+            position: absolute; top: 35%; transform: translateY(-50%);
+            width: 48px; height: 48px; background-color: white; color: var(--scout-green);
+            border: 1px solid #ddd; border-radius: 50%; cursor: pointer; z-index: 10;
+            font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+        }
+        .carousel-btn:hover { background-color: var(--scout-red); color: white; transform: translateY(-50%) scale(1.1); }
+        .carousel-btn.left { left: -24px; }
+        .carousel-btn.right { right: -24px; }
+
+        .carousel-container {
+            display: flex; gap: 20px; overflow-x: auto;
+            padding: 10px 5px 20px 5px; scroll-behavior: smooth; scrollbar-width: none;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+
+        .carousel-card {
+            min-width: 280px; width: 280px; background: var(--scout-tan);
+            border: 1px solid #ddd; border-radius: 4px; overflow: hidden;
+            position: relative; flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .carousel-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .carousel-card img { height: 180px; width: 100%; object-fit: cover; }
+        .carousel-content { padding: 15px; }
+        .carousel-card h4 { font-size: 1rem; line-height: 1.3; margin-bottom: 0;}
+
+        .sponsored-tag {
+            background-color: gold; color: black; font-size: 0.7rem;
+            padding: 2px 6px; position: absolute; top: 10px; right: 10px;
+            font-weight: bold; text-transform: uppercase; border-radius: 2px; z-index: 2;
+        }
+
+        /* --- MIXED SECTION (TETRIS ALIGNMENT) --- */
+        .mixed-section {
+            padding: clamp(30px, 6vw, 60px) 0;
+            background-image: radial-gradient(var(--scout-khaki) 1px, transparent 1px); background-size: 20px 20px;
+        }
+
+        .mixed-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; align-items: stretch; }
+        .main-column { display: flex; flex-direction: column; gap: 30px; }
+
+        .video-wrapper {
+            width: 100%; aspect-ratio: 16 / 9; background-color: #000;
+            border-radius: 4px; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+
+        .video-label {
+            position: absolute; top: clamp(10px, 2vw, 20px); left: clamp(10px, 2vw, 20px);
+            background: var(--scout-red); color: white; padding: 5px 12px;
+            font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; z-index: 5;
+        }
+
+        .lower-content-row { display: flex; gap: 30px; height: 250px; }
+        .newsletter-box {
+            flex: 1; background: white; padding: clamp(15px, 3vw, 25px);
+            border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--scout-green);
+            display: flex; flex-direction: column; justify-content: center; height: 100%;
+        }
+        
+        .newsletter-box h3 { margin-top: 0; font-size: 1.2rem; margin-bottom: 10px;}
+        .newsletter-box form { display: flex; flex-direction: column; gap: 10px;}
+        .newsletter-box input[type="email"], .newsletter-box input[type="text"] { 
+            padding: 12px; border: 1px solid #ccc; border-radius: 4px; width: 100%;
+        }
+
+        .sidebar-column { position: relative; }
+        
+        /* SCROLL AFFORDANCE STYLES */
+        .roundup-box {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: white; padding: clamp(15px, 3vw, 25px);
+            border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--scout-green); display: flex; flex-direction: column;
+            overflow: hidden; /* Important so gradient doesn't spill out */
+        }
+
+        .roundup-box h3 { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        
+        .roundup-scroll-area {
+            flex: 1; overflow-y: auto; padding-right: 15px; min-height: 0;
+            /* Extra bottom padding so last item clears the gradient if needed */
+            padding-bottom: 40px; 
+        }
+        .roundup-scroll-area::-webkit-scrollbar { width: 6px; }
+        .roundup-scroll-area::-webkit-scrollbar-track { background: #f1f1f1; }
+        .roundup-scroll-area::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+        /* The White Fade Overlay */
+        .scroll-fade {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 90px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 85%);
+            pointer-events: none; /* Crucial: Lets users click links behind the fade */
+            z-index: 5;
+            transition: opacity 0.3s ease;
+        }
+
+        /* The Bouncing Arrow Overlay */
+        .scroll-prompt {
+            position: absolute;
+            bottom: 15px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--scout-green);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 10;
+            pointer-events: none;
+            animation: subtleBounce 2s infinite;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes subtleBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-5px); }
+            60% { transform: translateX(-50%) translateY(-3px); }
+        }
+
+        .roundup-item {
+            margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;
+        }
+        .roundup-source {
+            background-color: var(--scout-khaki);
+            color: var(--scout-brown);
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+            border-radius: 2px;
+        }
+        .roundup-item h4 a { color: var(--scout-green); font-size: 1rem; line-height: 1.3; font-weight: 700; display: inline-block; padding: 5px 0;}
+        .roundup-item p { font-size: 0.85rem; color: #555; margin-top: 2px; }
+
+        /* --- CATEGORY TABS SECTION --- */
+        .category-widget-section { padding: clamp(30px, 6vw, 60px) 0; }
+        .tabs-header {
+            display: flex; border-bottom: 2px solid var(--scout-khaki);
+            margin-bottom: 30px; flex-wrap: wrap; gap: 10px;
+        }
+        .tab-btn {
+            padding: 15px 20px; background: none; border: none;
+            font-family: 'Roboto', sans-serif; font-weight: 700;
+            color: #777; cursor: pointer; border-bottom: 4px solid transparent;
+            margin-bottom: -2px; font-size: 0.9rem; text-transform: uppercase;
+        }
+        .tab-btn:hover, .tab-btn.active { color: var(--scout-green); }
+        .tab-btn.active { border-bottom: 4px solid var(--scout-green); }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .cat-post-card { 
+            background: white; border: 1px solid #eee; padding-bottom: 15px; 
+            border-radius: 4px; overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .cat-post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .cat-post-card img { height: 200px; width: 100%; object-fit: cover; margin-bottom: 15px; }
+        .cat-post-card h3 { font-size: 1.2rem; margin: 0 15px 10px; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--scout-green); color: #ddd;
+            padding: clamp(40px, 6vw, 60px) 0; margin-top: 50px; border-top: 8px solid var(--scout-brown);
+        }
+        .footer-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; }
+        .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .footer-links h4 { color: var(--scout-khaki); margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem;}
+        .footer-links a { display: block; padding: 8px 0; }
+        .footer-links a:hover { color: white; }
+
+        /* ==================================================== */
+        /* === MOBILE RESPONSIVENESS === */
+        /* ==================================================== */
+        
+        @media (max-width: 1100px) {
+            .mobile-menu-toggle { display: block; }
+            .header-content {
+                display: none; flex-direction: column; width: 100%; align-items: stretch; margin-top: 15px;
+            }
+            .header-content.active { display: flex; animation: fadeIn 0.3s; }
+            nav ul { flex-direction: column; gap: 0; }
+            
+            nav a::after { display: none; }
+            nav a { 
+                display: block; padding: 15px 0; 
+                border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.1rem; white-space: normal;
+            }
+            .header-actions { margin-left: 0; margin-top: 20px; flex-direction: column; align-items: stretch; gap: 15px; }
+            
+            .search-container { 
+                background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+                width: 100%; justify-content: flex-start; padding: 5px;
+            }
+            .search-container input { width: 100%; padding: 10px; opacity: 1; }
+            .search-container.active input { width: 100%; }
+            .search-btn { pointer-events: none; opacity: 0.7; } 
+
+            .header-actions .btn { width: 100%; padding: 15px; }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; height: auto; }
+            .hero-main { height: 350px; }
+            
+            .hero-side-stack { gap: 15px; height: auto; }
+            .hero-sub { height: 220px; display: block; flex: none; } 
+            
+            .hero-sub img { position: absolute; width: 100%; height: 100%; }
+            .hero-sub-content { justify-content: flex-end; padding: 15px; }
+            .hero-sub h3 { font-size: 1.1rem; margin-top: 5px; }
+            
+            .ad-container-728 { display: none; }
+
+            .carousel-btn { display: none; } 
+            .carousel-container { overflow-x: auto; padding-right: 5vw; }
+            .carousel-card { width: 80vw; min-width: 80vw; } 
+
+            .mixed-grid { grid-template-columns: 1fr; gap: 40px; }
+            .lower-content-row { flex-direction: column; height: auto; gap: 30px;}
+            .ad-placeholder-300 { margin: 0 auto; }
+            .sidebar-column { position: static; height: 500px; }
+            .roundup-box { position: relative; height: 100%; }
+
+            .tabs-header { 
+                flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; border-bottom: none; padding-bottom: 5px; 
+            }
+            .tabs-header::-webkit-scrollbar { display: none; }
+            .tab-btn { white-space: nowrap; border: 1px solid #ddd; border-radius: 30px; margin-right: 10px; padding: 10px 20px;}
+            .tab-btn.active { border-bottom: 1px solid var(--scout-green); background: var(--scout-green); color: white;}
+            .tab-content.active { grid-template-columns: 1fr; gap: 20px;}
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">On Scouting</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
+            
+            <div class="header-content" id="mobileNav">
+                <nav>
+                    <ul>
+                        <li><a href="#">Health & Wellness</a></li>
+                        <li><a href="#">Good Turns</a></li>
+                        <li><a href="#">Headliners</a></li>
+                        <li><a href="#">Outdoors</a></li>
+                        <li><a href="#">Family Fun</a></li>
+                        <li><a href="#">Leader Lab</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-container" id="searchContainer">
+                        <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <input type="text" id="searchInput" placeholder="Search articles...">
+                    </div>
+                    <a href="#" class="btn">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-main">
+                    <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/02/AKB_9593-scaled.jpg?resize=678%2C381&ssl=1" alt="Scouts with the Royals mascot">
+                    <div class="hero-overlay">
+                        <span class="category-tag">Leader Lab</span>
+                        <h2>Troop Traditions: See what this council and the KC Royals have in common</h2>
+                        <p class="ui-font" style="font-size: 0.8rem; margin-top:10px;">By Darrin Scheid | Feb. 17, 2026</p>
+                    </div>
+                </div>
+                <div class="hero-side-stack">
+                    <div class="hero-sub">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2025/03/merit-badge-sash-e1741898685220.jpeg" alt="merit badge sash">
+                        <div class="hero-sub-content">
+                            <span class="category-tag">Scouting Updates</span>
+                            <h3>80 merit badges updated for 2026</h3>
+                        </div>
+                    </div>
+                    <div class="hero-sub">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/02/Bobsled-Furnell-Cropped.jpg" alt="bobsledder">
+                        <div class="hero-sub-content">
+                            <span class="category-tag">Headliners</span>
+                            <h3>Eagle Scout and former college sprinter suits up for Team USA’s bobsled team</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-container-728">
+        <div class="ad-placeholder-728">
+            ADVERTISEMENT (728x90)
+        </div>
+    </div>
+
+    <section class="carousel-section">
+        <div class="container">
+            <div class="carousel-header">
+                <h3 class="ui-font" style="color:var(--text-dark); border-bottom: 2px solid var(--scout-red); padding-bottom: 5px;">More Stories</h3>
+                <a href="#" style="color:var(--scout-red); font-weight:bold; font-size: 0.9rem;">View All &rarr;</a>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <button class="carousel-btn left" onclick="scrollCarousel(-300)">&#8249;</button>
+                <div class="carousel-container" id="storiesCarousel">
+                    <div class="carousel-card">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2023/09/CPR-training-scaled.jpg" alt="CPR">
+                        <div class="carousel-content">
+                            <span class="category-tag">Health and Safety</span>
+                            <h4>Scouts learn lifesaving skills in this Indiana council program</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="sponsored-tag">Sponsored</div>
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2025/12/Royo-Canou-1-scaled.jpg" alt="Gear">
+                        <div class="carousel-content">
+                            <span class="category-tag">Partner Content</span>
+                            <h4>Your golden gateway to summer fun is here</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/02/LHMI2064R-scaled.jpg" alt="Sea Scouts">
+                        <div class="carousel-content">
+                            <span class="category-tag">Scouting Updates</span>
+                            <h4>New summer opportunity for Sea Scouts</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/02/BlueandGoldCredit-_Jim-Grimaldi-MG_11442.png" alt="Banquet">
+                        <div class="carousel-content">
+                            <span class="category-tag">Family Fun</span>
+                            <h4>A parent's guide to blue and gold banquets</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/01/IMG_0329-scaled.jpg" alt="Summit Rank">
+                        <div class="carousel-content">
+                            <span class="category-tag">Good Turns</span>
+                            <h4>The purr-fect Summit rank project</h4>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://i0.wp.com/blog.scoutingmagazine.org/wp-content/uploads/sites/2/2026/02/Seahawks-Kicker.jpg" alt="Football">
+                        <div class="carousel-content">
+                            <span class="category-tag">Leader Lab</span>
+                            <h4>How the Super Bowl can inspire Scouts to earn merit badges</h4>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn right" onclick="scrollCarousel(300)">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="mixed-section">
+        <div class="container">
+            <div class="mixed-grid">
+                
+                <div class="main-column">
+                    <div class="video-wrapper">
+                        <div class="video-label">Watch Now</div>
+                        <div style="text-align:center;">
+                            <h2 style="color:white; margin-bottom:10px;">Scout Life: High Adventure</h2>
+                            <button class="btn" style="border-radius: 4px; border: none; background-color: var(--scout-red); color: white;">Play Video &#9658;</button>
+                        </div>
+                    </div>
+
+                    <div class="lower-content-row">
+                        <div class="newsletter-box">
+                            <h3>Get the Newsletter!</h3>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Get the latest news and tips delivered free to your inbox.</p>
+                            <form>
+                                <input type="text" placeholder="Name">
+                                <input type="email" placeholder="Email Address">
+                                <button type="button" class="btn" style="width:100%; border-radius: 4px; border: none; background-color: var(--scout-red); color: white;">Sign Up Now</button>
+                            </form>
+                        </div>
+                        
+                        <div class="ad-placeholder-300">
+                            ADVERTISEMENT (300x250)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-column">
+                    <div class="roundup-box">
+                        <h3>Scouting in the News</h3>
+                        
+                        <div class="scroll-fade" id="scrollFade"></div>
+                        
+
+                        <div class="roundup-scroll-area" id="roundupScrollArea">
+                            
+                            <div class="roundup-item">
+                                <span class="roundup-source">San Diego Union-Tribune</span>
+                                <h4><a href="https://www.sandiegouniontribune.com/2026/02/17/carmel-valley-scouts-build-a-home-in-mexico-with-solana-beachs-casas-de-luz/">California Troop Builds Life-Changing House in Mexico</a></h4>
+                                <p>A group of Carmel Valley Scouts headed south of the border and teamed up with Solana Beach’s Casas de Luz to build a home for a family in Tijuana.</p>
+                            </div>
+                            
+                            <div class="roundup-item">
+                                <span class="roundup-source">KFDA News Channel 10</span>
+                                <h4><a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.newschannel10.com/2026/02/16/scouting-america-host-flag-retirement-service-presidents-day-today/&ved=2ahUKEwjn9_f-ruOSAxV6lGoFHRPyDXoQxfQBKAB6BAgJEAE&usg=AOvVaw2pynv9kYyM6NECk3_pxJQg">America 250: Scouts Lead Flag Retirement on Presidents Day</a></h4>
+                                <p>On Presidents Day, Scouts teamed up with community partners in Canyon, Texas, to collect worn American flags and retire them with dignity.</p>
+                            </div>
+                            
+                            <div class="roundup-item">
+                                <span class="roundup-source">Cincinnati Enquirer</span>
+                                <h4><a href="https://www.cincinnati.com/story/news/education/2026/02/13/dan-beard-council-scouting-america-opens-skilled-trades-center/88514977007/">Scouting America Opens Skilled Trades Center</a></h4>
+                                <p>The Dan Beard Council has opened a hands-on Skilled Trades Education Center designed to introduce youth to careers in carpentry, welding, robotics, and more.</p>
+                            </div>
+
+                            <div class="roundup-item">
+                                <span class="roundup-source">NorthcentralPA.com</span>
+                                <h4><a href="https://www.northcentralpa.com/news/congressional-scouting-caucus-recognizes-116-years-of-scouting-america/article_d84a9096-fb78-4694-9b52-4825cace20c0.html">116 Years Strong: Congress Honors the Lasting Impact of Scouting America</a></h4>
+                                <p>Members of the bipartisan Congressional Scouting Caucus recognized the 116th anniversary of Scouting America, highlighting its legacy of leadership, service, and character development.</p>
+                            </div>
+
+                            <div class="roundup-item">
+                                <span class="roundup-source">Franklin Observer</span>
+                                <h4><a href="https://franklinobserver.town.news/g/franklin-town-ma/n/365647/scouting-history-and-heritage-focus-sunday-historical-museum">Scouting History and Heritage is Focus on Sunday at Historical Museum</a></h4>
+                                <p>The Franklin Historical Museum is hosting a special presentation exploring how Scouting has shaped community life for more than a century.</p>
+                            </div>
+                            
+                            <div class="roundup-item" style="border-bottom: none;">
+                                <span class="roundup-source">7 WITN</span>
+                                <h4><a href="https://www.witn.com/2026/02/13/first-african-american-ceo-scouting-americas-east-carolina-council-shares-his-story/">First African American CEO of Scouting America’s East Carolina Council shares his story</a></h4>
+                                <p>Dwayne Jones, the first African American CEO of Scouting America’s East Carolina Council, reflects on his journey from young Scouter to trail-blazing leader and the impact his presence has had on Scouts across 20 counties.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="category-widget-section">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Explore by Topic</h2>
+            
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab(event, 'health')">Health & Wellness</button>
+                <button class="tab-btn" onclick="openTab(event, 'goodturns')">Good Turns</button>
+                <button class="tab-btn" onclick="openTab(event, 'headliners')">Headliners</button>
+                <button class="tab-btn" onclick="openTab(event, 'outdoors')">Outdoors</button>
+                <button class="tab-btn" onclick="openTab(event, 'family')">Family Fun</button>
+                <button class="tab-btn" onclick="openTab(event, 'leader')">Leader Lab</button>
+                <button class="tab-btn" onclick="openTab(event, 'updates')">Scouting Updates</button>
+            </div>
+
+            <div id="health" class="tab-content active">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=CPR+Skills" alt="CPR">
+                    <h3>Scouts learn lifesaving skills in this Indiana council program</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=Safety" alt="Safety">
+                    <h3>Help your Cub Scouts build safety skills for life</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=Winter+Treks" alt="Snowshoeing">
+                    <h3>Four winter treks to inspire your next cold weather adventure</h3>
+                </div>
+            </div>
+            
+            <div id="goodturns" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/CE1126/ffffff?text=Adoptable+Felines" alt="Cat project">
+                    <h3>The purr-fect Summit rank project</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/CE1126/ffffff?text=Eagle+Projects" alt="Project Makeovers">
+                    <h3>Extreme Makeovers, Round 69: Eagle Scout project before-and-after photos</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/CE1126/ffffff?text=buildOn+Treks" alt="Building">
+                    <h3>buildOn Treks allow Scouts to develop character and serve others brick by brick</h3>
+                </div>
+            </div>
+
+            <div id="headliners" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=Yo-Yo+Champ" alt="Yo-Yo">
+                    <h3>This Eagle Scout national yo-yo champion shares how a yo-yo can introduce you to the world</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=116+Scouts" alt="Famous Scouts">
+                    <h3>Meet 116 Scouts who became famous</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=Super+Bowl+Player" alt="Football">
+                    <h3>See which Eagle Scout could play in Sunday's Super Bowl</h3>
+                </div>
+            </div>
+
+            <div id="outdoors" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=Yo-Yo+Champ" alt="Yo-Yo">
+                    <h3>This Eagle Scout national yo-yo champion shares how a yo-yo can introduce you to the world</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=116+Scouts" alt="Famous Scouts">
+                    <h3>Meet 116 Scouts who became famous</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/5c4033/ffffff?text=Super+Bowl+Player" alt="Football">
+                    <h3>See which Eagle Scout could play in Sunday's Super Bowl</h3>
+                </div>
+            </div>            
+
+            <div id="family" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/888888/ffffff?text=Banquet+Guide" alt="Blue and Gold">
+                    <h3>A parent's guide to blue and gold banquets</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/888888/ffffff?text=Merit+Badges" alt="Super bowl badges">
+                    <h3>How the Super Bowl can inspire Scouts to earn merit badges</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/888888/ffffff?text=Pro+Racing" alt="Pinewood Derby">
+                    <h3>Pro racing meets Pinewood Derby in this fun event</h3>
+                </div>
+            </div>
+
+            <div id="leader" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/444444/ffffff?text=Scout+Growth" alt="Guest blog">
+                    <h3>Guest Blog: Here's how we went from no Scouts to 100 in 4 years</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/444444/ffffff?text=TroopTalkLive" alt="Discussion">
+                    <h3>Join the discussion at 2 p.m. tomorrow (Wednesday) on #TroopTalkLive</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/444444/ffffff?text=Scouting+History" alt="History">
+                    <h3>Hillcourt Foundation recognizes 13 for their contributions to Scouting history</h3>
+                </div>
+            </div>
+
+            <div id="updates" class="tab-content">
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=Sea+Scouts" alt="Sea Scouts">
+                    <h3>New summer opportunity for Sea Scouts</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=Scout+Sunday" alt="Scout Sunday">
+                    <h3>Your guide to this year's Scout Sunday, Scout Shabbat and Scout Jumuah</h3>
+                </div>
+                <div class="cat-post-card">
+                    <img src="https://via.placeholder.com/400x200/3b4d36/ffffff?text=Fire+Safety" alt="Prepared Hero">
+                    <h3>Prepared Hero and Scouting America team up on fire safety</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <div class="footer-logo">On Scouting</div>
+                <p>The official blog of Scouting America.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Health & Wellness</a></li>
+                        <li><a href="#">Good Turns</a></li>
+                        <li><a href="#">Headliners</a></li>
+                        <li><a href="#">Outdoors</a></li>
+                        <li><a href="#">Family Fun</a></li>
+                        <li><a href="#">Leader Lab</a></li>
+                        <li><a href="#">Scouting Updates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 40px; border-top: 1px solid #555; padding-top: 20px; font-size: 0.8rem; color: #888;">
+            &copy; 2026 Scouting America. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Search Box Logic
+        function toggleSearch() {
+            const container = document.getElementById('searchContainer');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                document.getElementById('searchInput').focus();
+            }
+        }
+
+        // Mobile Hamburger Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        // Tab Switching
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "grid";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+
+        // Horizontal Carousel
+        function scrollCarousel(offset) {
+            const carousel = document.getElementById('storiesCarousel');
+            carousel.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        // Scroll Affordance Logic for News Roundup
+        const roundupArea = document.getElementById('roundupScrollArea');
+        const scrollPrompt = document.getElementById('scrollPrompt');
+        const scrollFade = document.getElementById('scrollFade');
+
+        roundupArea.addEventListener('scroll', function() {
+            // Hide the bouncing arrow as soon as they scroll down 20px
+            if (this.scrollTop > 20) {
+                scrollPrompt.style.opacity = '0';
+            } else {
+                scrollPrompt.style.opacity = '1';
+            }
+
+            // Hide the white gradient fade when they hit the very bottom
+            // We use - 5 as a small buffer for cross-browser rounding decimal issues
+            if (this.scrollTop + this.clientHeight >= this.scrollHeight - 5) {
+                scrollFade.style.opacity = '0';
+            } else {
+                scrollFade.style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html>
