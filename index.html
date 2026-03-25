@@ -126,31 +126,17 @@
 
 .logo {
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    border: 2px solid rgba(255,255,255,0.3);
-    padding: 8px 15px;
+    align-items: center;
     margin-right: 20px;
-    line-height: 1;
+    text-decoration: none;
 }
 
-.logo-main {
-    font-size: 1.8rem; /* Slightly smaller than your original 2rem */
-    font-weight: 900;
-    font-style: italic;
-}
-
-.logo-sub {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.6rem; /* Dropped slightly for a longer string */
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.85);
-    margin-top: 6px;
-    max-width: 180px; /* Forces the text to wrap */
-    line-height: 1.4; /* Adds breathing room between the two lines */
-    white-space: normal; /* Ensures it is allowed to wrap */
+/* New class for the image logo */
+.site-logo {
+    max-width: 280px; /* Adjust this value if the logo needs to be larger/smaller */
+    height: auto;
+    display: block;
+    background-color: transparent; /* Overrides the global img #ddd background */
 }
         
 
@@ -167,22 +153,22 @@
 
 nav ul { 
     display: flex; 
-    gap: 15px; /* Reduced from 20px */
+    gap: 12px; /* Reduced from 15px to make room for the logo */
     flex-wrap: wrap;
 }
-        
-        nav a {
-            color: rgba(255, 255, 255, 0.8); 
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
+
+nav a {
+    color: rgba(255, 255, 255, 0.8); 
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem; /* Reduced slightly from 0.85rem */
+    font-weight: 600; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
         nav a::after {
             content: ''; position: absolute; width: 0; height: 2px;
             bottom: 0; left: 50%; background-color: white;
@@ -503,9 +489,22 @@ nav ul {
         
         /* 1. HEADER BREAKPOINT */
         @media (max-width: 1100px) {
-            .logo-sub {
-        display: none; /* Hides the long tagline on smaller screens */
+/* Add these rules to control the logo on small screens */
+    .logo {
+        margin-right: 0; /* Remove the desktop margin */
+        flex: 1; /* Allow the logo container to take available space */
+        min-width: 0; /* Prevent flexbox overflow */
     }
+
+    .site-logo {
+        /* Scale the logo to fit the space minus the hamburger button */
+        max-width: min(240px, 100%); 
+        width: 100%;
+    }
+
+    /* ... Keep your existing mobile-menu-toggle and header-content rules here ... */
+    .mobile-menu-toggle { display: block; }
+    /* ... */
             
             .mobile-menu-toggle { display: block; }
             .header-content {
@@ -590,10 +589,12 @@ nav ul {
 
     <header>
         <div class="container header-inner">
-            <div class="logo">
-    <span class="logo-main">On Scouting</span>
-    <span class="logo-sub">For All Families & Leaders<br />Living the Scout Life</span>
-</div>
+<a href="#" class="logo" aria-label="On Scouting Home">
+    <picture>
+        <source media="(max-width: 1100px)" srcset="OnScouting_nosubhead.png">
+        <img src="OnScouting.png" alt="On Scouting Logo" class="site-logo">
+    </picture>
+</a>
             <button class="mobile-menu-toggle" id="menuToggleBtn" aria-label="Toggle Navigation">&#9776;</button>
             
             <div class="header-content" id="mobileNav">
